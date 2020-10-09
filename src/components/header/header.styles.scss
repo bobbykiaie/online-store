@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  
 
   .logo-container {
     height: 100%;
@@ -18,8 +19,13 @@
     align-items: center;
     justify-content: flex-end;
 
+  
+
     .option {
       padding: 10px 15px;
+      cursor: pointer;
+      text-decoration: none;
+      color: black;
     }
   }
 }

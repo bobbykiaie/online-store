@@ -1,3 +1,10 @@
 body {
     font-family: 'Open Sans Condensed', sans-serif;
 }
+
+
+* {
+    /*every element 
+    */
+    box-sizing: border-box;
+}
