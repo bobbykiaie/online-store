@@ -7,7 +7,10 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
 import Header from './components/header/header.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 
 
 
@@ -18,12 +21,15 @@ const App = () => {
   const userContext = React.createContext({
     user: null,
   })
-
+  const firestore = firebase.firestore();
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-        setCurrentUser(user)
+    
+   auth.onAuthStateChanged(async user => {
+        setCurrentUser(user);
+        await createUserProfileDocument(user);
         console.log(user);
+        
     })
   }, []);
 
