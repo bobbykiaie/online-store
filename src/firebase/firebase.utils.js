@@ -15,19 +15,25 @@ const config = {
       
 };
 
-export const createUserProfileDocument = async ( userAuth, additionalData ) => {  //userAuth is passed from App.js
+export const createUserProfileDocument = async ( userAuth, additionalData ) => {  //userAuth is passed from App.js and shows firebase sign in data
+    console.log("About to show userAuth object");
+    console.log(userAuth);
+    console.log("Finished showing userAuth object");
 
     if(!userAuth) return;  // If userAuth object doesnt exist, return 
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);  //creates ref for UID from Userauth inside firebase db
     const snapShot = await userRef.get();  //
+    console.log("About to log snapshot");
     console.log(snapShot);
 
     if(!snapShot.exists) {
         const {displayName, email} = userAuth;
+        console.log(displayName,email);
         const createdAt = new Date();
 
         try {
+        // if the snapshot doesnt exist it will create a user with the follow data
             await userRef.set({
                 displayName,
                 email,
